@@ -28,41 +28,41 @@ public class Hooks extends AbstractTestNGCucumberTests {
 
 @BeforeMethod
     public static WebDriver getDriver() {
+    if (driver == null) {
+
+        String browser = System.getProperty("browser", Constants.BROWESR);
+        switch (browser.toLowerCase()) {
+            case "chrome":
+                ChromeOptions chromeOptions = new ChromeOptions();
+                chromeOptions.addArguments("--disable-extensions");
+                chromeOptions.addArguments("--disable-popup-blocking");
+                chromeOptions.addArguments("--disable-infobars");
+                chromeOptions.addArguments("--disable-notifications");
+                chromeOptions.addArguments("--disable-popup-blocking");
+                chromeOptions.addArguments("--disable-dev-shm-usage");
+                chromeOptions.addArguments("--disable-page-visibility-checks");
+                chromeOptions.addArguments("--disable-javascript");
+                chromeOptions.setPageLoadStrategy(PageLoadStrategy.NONE);
+                chromeOptions.setExperimentalOption("excludeSwitches", new String[]{"enable-automation"}); // Disable the "Chrome is being controlled by automated test software" notification
+
+                WebDriverManager.chromedriver().setup();
 
 
-            String browser = System.getProperty("browser", Constants.BROWESR);
-            switch (browser.toLowerCase()) {
-                case "chrome":
-                    ChromeOptions chromeOptions = new ChromeOptions();
-                    chromeOptions.addArguments("--disable-extensions");
-                    chromeOptions.addArguments("--disable-popup-blocking");
-                    chromeOptions.addArguments("--disable-infobars");
-                    chromeOptions.addArguments("--disable-notifications");
-                    chromeOptions.addArguments("--disable-popup-blocking");
-                    chromeOptions.addArguments("--disable-dev-shm-usage");
-                    chromeOptions.addArguments("--disable-page-visibility-checks");
-                    chromeOptions.addArguments("--disable-javascript");
-                    chromeOptions.setPageLoadStrategy(PageLoadStrategy.NONE);
-                    chromeOptions.setExperimentalOption("excludeSwitches", new String[]{"enable-automation"}); // Disable the "Chrome is being controlled by automated test software" notification
-
-                    WebDriverManager.chromedriver().setup();
-
-
-
-                    driver = new ChromeDriver(chromeOptions);
-                    driver.manage().window().maximize();
-                    break;
-                case "firefox":
-                    WebDriverManager.firefoxdriver().setup();
-                    driver = new FirefoxDriver();
-                    break;
-                case "edge":
-                    WebDriverManager.edgedriver().setup();
-                    driver = new EdgeDriver();
-                    break;
-                default:
-                    throw new IllegalArgumentException("Unsupported browser: " + browser);
-            }
+                driver = new ChromeDriver(chromeOptions);
+                driver.manage().window().maximize();
+                break;
+            case "firefox":
+                WebDriverManager.firefoxdriver().setup();
+                driver = new FirefoxDriver();
+                break;
+            case "edge":
+                WebDriverManager.edgedriver().setup();
+                driver = new EdgeDriver();
+                break;
+            default:
+                throw new IllegalArgumentException("Unsupported browser: " + browser);
+        }
+    }
 
 
     driver.navigate().to(Constants.BASE_URL);

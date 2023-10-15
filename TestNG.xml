@@ -1,5 +1,5 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="Cucumber Tests" parallel="classes" thread-count="1">
+<suite name="Cucumber Tests">
     <test name="SubScribePackage">
         <classes>
             <class name="Runners.TestRunner"/>
