@@ -1,10 +1,6 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="Cucumber Tests" parallel="methods" thread-count="5">
-    <listeners>
-        <listener class-name="Utilties.RetryListener" />
-
-    </listeners>
-    <test name="Arabic Test">
+<suite name="Cucumber Tests" parallel="classes" thread-count="1">
+    <test name="SubScribePackage">
         <classes>
             <class name="Runners.TestRunner"/>
         </classes>

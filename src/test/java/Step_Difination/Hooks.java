@@ -28,7 +28,7 @@ public class Hooks extends AbstractTestNGCucumberTests {
 
 @BeforeMethod
     public static WebDriver getDriver() {
-        if (driver == null) {
+
 
             String browser = System.getProperty("browser", Constants.BROWESR);
             switch (browser.toLowerCase()) {
@@ -63,7 +63,7 @@ public class Hooks extends AbstractTestNGCucumberTests {
                 default:
                     throw new IllegalArgumentException("Unsupported browser: " + browser);
             }
-        }
+
 
     driver.navigate().to(Constants.BASE_URL);
     driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(60));

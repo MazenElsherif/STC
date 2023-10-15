@@ -6,7 +6,7 @@ import io.cucumber.testng.CucumberOptions;
         features = "src/test/resources",
         glue = {"Step_Difination"},
         plugin = {"pretty", "html:target/cucumber-html-report"},
-        tags = "@Arabic or @English",
+        tags = "@English or @Arabic",
         monochrome = true,
         dryRun = false
 )
