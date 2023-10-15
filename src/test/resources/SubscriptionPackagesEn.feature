@@ -26,7 +26,7 @@ Feature: Subscription Package Validation
       | lite        | 2     | BHD/month| Included|HD  |         4   |for 14 Day |
       | classic      | 3    | BHD/month|Included | Full HD |     4  |For 14 days|
       | premium     | 6    | BHD/month|Included |4K UHD  |       8 |For 14 days|
-
+# will fail due to wrong conversion in curencies
   Scenario: Verify Currency Conversion
     Given I am on the subscription service website
     When should see the correct converted prices based on exchange rates From SAR to KWD
