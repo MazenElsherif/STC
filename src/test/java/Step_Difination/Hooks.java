@@ -6,6 +6,8 @@ import com.google.gson.JsonObject;
 import io.cucumber.testng.AbstractTestNGCucumberTests;
 import io.github.bonigarcia.wdm.WebDriverManager;
 
+import io.qameta.allure.Allure;
+import io.qameta.allure.AllureLifecycle;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.PageLoadStrategy;
 import org.openqa.selenium.WebDriver;
@@ -26,7 +28,8 @@ public class Hooks extends AbstractTestNGCucumberTests {
     static JsonObject jsonData = JSONReader.readJSONFile();
 
 
-@BeforeMethod
+
+
     public static WebDriver getDriver() {
     if (driver == null) {
 
@@ -74,10 +77,11 @@ public class Hooks extends AbstractTestNGCucumberTests {
     return driver;
     }
 
-@AfterMethod
+
     public static void quitDriver() {
+
         if (driver != null) {
-      driver.quit();
+     driver.quit();
             driver = null;
         }
     }

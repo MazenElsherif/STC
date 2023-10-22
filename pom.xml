@@ -8,10 +8,16 @@
   <build>
     <plugins>
       <plugin>
+        <groupId>io.qameta.allure</groupId>
+        <artifactId>allure-maven</artifactId>
+        <version>2.10.0</version>
+      </plugin>
+      <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
 
         <configuration>
+          <outputDirectory>target/allure-reports</outputDirectory>
           <source>8</source>
           <target>8</target>
           <includes>
@@ -23,6 +29,7 @@
       </plugin>
     </plugins>
   </build>
+
   <packaging>jar</packaging>
 
   <name>STC</name>
@@ -39,7 +46,7 @@
       <version>5.7.2</version>
     </dependency>
 
-    <!-- https://mvnrepository.com/artifact/com.aventstack/extentreports -->
+
     <dependency>
       <groupId>com.aventstack</groupId>
       <artifactId>extentreports</artifactId>
@@ -143,6 +150,14 @@
       <artifactId>commons-io</artifactId>
       <version>2.11.0</version>
     </dependency>
+
+    <dependency>
+      <groupId>io.qameta.allure</groupId>
+      <artifactId>allure-cucumber5-jvm</artifactId>
+      <version>2.15.0</version>
+    </dependency>
+
+
   </dependencies>
 
 </project>

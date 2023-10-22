@@ -1,39 +1,47 @@
 package Step_Difination;
 
+
 import Pages.HomePage;
 import Utilties.CommonActions;
 import Utilties.Constants;
 import io.cucumber.datatable.DataTable;
+import io.cucumber.java.After;
 import io.cucumber.java.Before;
-import io.cucumber.java.Scenario;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
 import java.time.Duration;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 public class SubscriptionPackages extends Hooks{
-HomePage homePageObject=new HomePage(getDriver());
+HomePage homePageObject=new HomePage(driver);
+    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30)); // Adjust the timeout as needed
+
+    Actions actions = new Actions(getDriver());
 public  double liteSar;
 public double classicSar;
 public  double premuimSar;
+    @Before
+    public void setup() {
+        getDriver();
+    }
     @Given("I am on the subscription service website")
     public void visitSubscribPage() throws InterruptedException {
         CommonActions.waitForElement(homePageObject.StcLogo);
         CommonActions.verifyDisplying(homePageObject.chooseYourPlanHeader);
+    }
+    @Then("Verify That language is changed {string}")
+    public void verify_that_language_is_changed(String arabicLanguage) {
+
+        Assert.assertEquals(getDriver().findElement(homePageObject.arabicCountry).getText().trim(),arabicLanguage);
+
     }
     @Then("I should see the following subscription packages:")
     public void i_should_see_the_following_subscription_packages_for_sa(DataTable expectedData) {
@@ -103,7 +111,12 @@ public  double premuimSar;
         Assert.assertEquals(CommonActions.roundToDecimalPlace(CommonActions.convertCurrency(premuimSar, Constants.exchangeRateFromSarToBhd),1),premuimBhd);
     }
     @Given("Change Langauge To Arabic")
-    public void change_langauge_to_arabic() throws InterruptedException {Thread.sleep(2000);
-        CommonActions.clickElementWithJavaScript(homePageObject.changeToArabic);
+    public void change_langauge_to_arabic() throws InterruptedException {
+        CommonActions.clickElement(homePageObject.changeToArabic);
+    }
+
+    @After
+    public void teardown() {
+       quitDriver();
     }
 }

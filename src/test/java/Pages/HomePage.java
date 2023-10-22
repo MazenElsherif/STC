@@ -10,7 +10,7 @@ import org.openqa.selenium.WebElement;
 
 import java.util.List;
 
-public class HomePage  {
+public  class HomePage  {
     private WebDriver driver;
 
     public HomePage(WebDriver driver) {
@@ -25,6 +25,8 @@ public By discoveryRow=By.xpath("(//div[contains(@class,'plan-names')])[3]");
     public By Rewind=By.xpath("(//div[contains(@class,'plan-names')])[7]");
     public By changeToArabic=By.xpath("//a[@id='translation-btn']");
     public  By changeToEnglish=By.xpath("(//a[@dir='rtl'][contains(.,'English')])[1]");
+    public By arabicCountry=By.xpath("(//span[contains(.,'السعودية')])[1]");
+    public By support=By.xpath("//button[contains(.,'Support')]");
 
     public WebElement getSubscribePlanName( String packageName){
         String xpathSubscribePlan="//strong[@id='name-" + packageName + "']";
