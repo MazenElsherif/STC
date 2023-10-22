@@ -33,5 +33,7 @@ Test Execution
 bash
 mvn test
 
+Jenkins Job Url : http://localhost:8080/job/STC/ i make it accessable for anyone
+
 
 
